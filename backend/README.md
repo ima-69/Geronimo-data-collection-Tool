@@ -26,6 +26,12 @@ Ballerina backend for the Geronimo Data Collection Tool. This backend provides R
    dbPassword = "your_password"
    ```
 
+3. Configure CORS allowed origins in `Config.toml`:
+   ```toml
+   frontendUrls = ["http://localhost:5173", "http://localhost:3000"]
+   ```
+   Update this array with your frontend URLs as needed.
+
 ### 2. Build the Project
 
 ```bash
@@ -100,9 +106,13 @@ backend/
 
 ## CORS Configuration
 
-CORS is enabled for the following origins:
+CORS is configured via the `frontendUrls` array in `Config.toml`. By default, it includes:
 - `http://localhost:5173` (Vite default)
 - `http://localhost:3000` (React default)
 
-Update the CORS configuration in `main.bal` if needed.
+To add or modify allowed origins, update the `frontendUrls` array in `Config.toml`:
+```toml
+frontendUrls = ["http://localhost:5173", "http://localhost:3000", "https://your-production-domain.com"]
+```
+
 

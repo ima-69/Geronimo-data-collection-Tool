@@ -10,3 +10,7 @@ configurable string dbPassword = ?;
 // HTTP service configuration
 configurable int servicePort = ?;
 
+// CORS configuration
+configurable string[] frontendUrls = ?;
+
+

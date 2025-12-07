@@ -5,7 +5,7 @@ listener http:Listener httpListener = check new (servicePort);
 
 // CORS configuration
 http:CorsConfig corsConfig = {
-    allowOrigins: ["http://localhost:5173", "http://localhost:3000"],
+    allowOrigins: frontendUrls,
     allowCredentials: true,
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"]
