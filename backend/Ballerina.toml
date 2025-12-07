@@ -2,7 +2,13 @@
 org = "imansha"
 name = "backend"
 version = "0.1.0"
-title = "backend"
+distribution = "2201.12.9"
 
 [build-options]
 sticky = true
+observabilityIncluded = true
+
+[[platform.java11.dependency]]
+groupId = "com.mysql"
+artifactId = "mysql-connector-j"
+version = "8.0.33"
