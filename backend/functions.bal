@@ -61,11 +61,15 @@ function getAllPayloads() returns PayloadRecord[]|error {
         string[] ccEmails = [];
         json|error toParsed = value:fromJsonString(<string>row["to_emails"]);
         json|error ccParsed = value:fromJsonString(<string>row["cc_emails"]);
-        if toParsed is json {
-            toEmails = <string[]>toParsed;
+        if toParsed is json[] {
+            foreach json item in toParsed {
+                toEmails.push(<string>item);
+            }
         }
-        if ccParsed is json {
-            ccEmails = <string[]>ccParsed;
+        if ccParsed is json[] {
+            foreach json item in ccParsed {
+                ccEmails.push(<string>item);
+            }
         }
         PayloadRecord payload = {
             id: <int>row["id"],
@@ -125,11 +129,15 @@ function getPayloadById(int payloadId) returns PayloadRecord|error {
         string[] ccEmails = [];
         json|error toParsed = value:fromJsonString(<string>row["to_emails"]);
         json|error ccParsed = value:fromJsonString(<string>row["cc_emails"]);
-        if toParsed is json {
-            toEmails = <string[]>toParsed;
+        if toParsed is json[] {
+            foreach json item in toParsed {
+                toEmails.push(<string>item);
+            }
         }
-        if ccParsed is json {
-            ccEmails = <string[]>ccParsed;
+        if ccParsed is json[] {
+            foreach json item in ccParsed {
+                ccEmails.push(<string>item);
+            }
         }
         PayloadRecord payload = {
             id: <int>row["id"],
