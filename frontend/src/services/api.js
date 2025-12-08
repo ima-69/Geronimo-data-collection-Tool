@@ -1,6 +1,20 @@
 // API service for backend communication
+// Priority: window.configs.apiUrl (Choreo) > VITE_API_BASE_URL (env) > localhost (fallback)
+let API_BASE_URL = window?.configs?.apiUrl || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083/api'|| window?.configs?.apiUrl;
+// Ensure API_BASE_URL ends with /api for backend service path
+// Remove trailing slash if present, then append /api
+if (API_BASE_URL && !API_BASE_URL.endsWith('/api')) {
+    // Remove trailing slash if present
+    API_BASE_URL = API_BASE_URL.replace(/\/$/, '');
+    // Append /api if not already present at the end
+    if (!API_BASE_URL.endsWith('/api')) {
+        API_BASE_URL = `${API_BASE_URL}/api`;
+    }
+}
+
+// Log the API base URL for debugging
+console.log('API Base URL:', API_BASE_URL);
 
 // Fetch wrapper with error handling
 async function fetchAPI(endpoint, options = {}) {
