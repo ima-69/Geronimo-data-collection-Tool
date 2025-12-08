@@ -3,6 +3,8 @@ import AddPayloadTab from './components/AddPayloadTab';
 import DocumentLinksTab from './components/DocumentLinksTab';
 import SubmittedDetailsTable from './components/SubmittedDetailsTable';
 
+const apiUrls = window?.configs?.apiUrl;
+
 function App() {
   const [activeTab, setActiveTab] = useState('documents');
 
