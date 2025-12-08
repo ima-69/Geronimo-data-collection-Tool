@@ -1,6 +1,7 @@
 // API service for backend communication
 // Priority: window.configs.apiUrl (Choreo) > VITE_API_BASE_URL (env) > localhost (fallback)
-let API_BASE_URL = window?.configs?.apiUrl || import.meta.env.VITE_API_BASE_URL;
+let API_BASE_URL = window?.configs?.apiUrl ;
+console.log('API Base URL:', API_BASE_URL);
 
 // Ensure API_BASE_URL ends with /api for backend service path
 // Remove trailing slash if present, then append /api
