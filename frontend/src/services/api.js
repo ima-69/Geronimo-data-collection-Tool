@@ -1,24 +1,28 @@
 // API service for backend communication
 // Priority: window.configs.apiUrl (Choreo) > VITE_API_BASE_URL (env) > localhost (fallback)
-let API_BASE_URL = window?.configs?.apiUrl ;
-console.log('API Base URL:', API_BASE_URL);
-
-// Ensure API_BASE_URL ends with /api for backend service path
-// Remove trailing slash if present, then append /api
-if (API_BASE_URL && !API_BASE_URL.endsWith('/api')) {
-    // Remove trailing slash if present
-    API_BASE_URL = API_BASE_URL.replace(/\/$/, '');
-    // Append /api if not already present at the end
-    if (!API_BASE_URL.endsWith('/api')) {
-        API_BASE_URL = `${API_BASE_URL}/api`;
+// This function gets the API base URL at runtime to ensure config.js has loaded
+function getApiBaseUrl() {
+    let apiUrl = window?.configs?.apiUrl || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083/api';
+    
+    // Ensure API_BASE_URL ends with /api for backend service path
+    // Remove trailing slash if present, then append /api
+    if (apiUrl && !apiUrl.endsWith('/api')) {
+        // Remove trailing slash if present
+        apiUrl = apiUrl.replace(/\/$/, '');
+        // Append /api if not already present at the end
+        if (!apiUrl.endsWith('/api')) {
+            apiUrl = `${apiUrl}/api`;
+        }
     }
+    
+    return apiUrl;
 }
-
-// Log the API base URL for debugging
-console.log('API Base URL:', API_BASE_URL);
 
 // Fetch wrapper with error handling
 async function fetchAPI(endpoint, options = {}) {
+  const API_BASE_URL = getApiBaseUrl();
+  console.log('API Base URL:', API_BASE_URL, 'Endpoint:', endpoint);
+  
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
