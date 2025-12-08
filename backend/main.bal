@@ -5,7 +5,7 @@ listener http:Listener httpListener = check new (servicePort);
 
 // CORS configuration - uses frontendUrls from config
 http:CorsConfig corsConfig = {
-    allowOrigins: ["https://bcbd71b6-e36a-4068-aa71-a1af4e051bd5.e1-us-east-azure.choreoapps.dev"],
+    allowOrigins: frontendUrls,
     allowCredentials: true,
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"]
