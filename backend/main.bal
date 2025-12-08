@@ -3,9 +3,9 @@ import ballerina/http;
 // HTTP listener for the service with CORS enabled
 listener http:Listener httpListener = check new (servicePort);
 
-// CORS configuration
+// CORS configuration - uses frontendUrls from config
 http:CorsConfig corsConfig = {
-    allowOrigins: ["*"],
+    allowOrigins: ["https://bcbd71b6-e36a-4068-aa71-a1af4e051bd5.e1-us-east-azure.choreoapps.dev"],
     allowCredentials: true,
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"]
