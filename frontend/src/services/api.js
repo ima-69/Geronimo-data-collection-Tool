@@ -3,7 +3,7 @@
 // This function gets the API base URL at runtime to ensure config.js has loaded
 function getApiBaseUrl() {
     let apiUrl = window?.configs?.apiUrl || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083/api';
-    
+    console.log('API Base URL:', apiUrl);
     // Ensure API_BASE_URL ends with /api for backend service path
     // Remove trailing slash if present, then append /api
     if (apiUrl && !apiUrl.endsWith('/api')) {
